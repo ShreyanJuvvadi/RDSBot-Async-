@@ -13,6 +13,7 @@ async def main():
     )
 
     subreddit = await reddit.subreddit("wallstreetbets")
+    print("Test")
     await subreddit.load()
     async for submission in subreddit.hot(limit = 5):
         print ("----------------------------------------")
