@@ -9,7 +9,7 @@ async def main():
     subreddit = await reddit.subreddit("wallstreetbets")
     print("Test")
     await subreddit.load()
-    async for submission in subreddit.hot(limit = 5):
+    async for submission in subreddit.hot(limit = 1):
         print ("----------------------------------------")
         print(submission.title)
         await submission.load()
@@ -17,6 +17,7 @@ async def main():
             if hasattr(comment,"body"):
                 print("``````````")
                 print(comment.body)
+    return
 
 
 if __name__ == "__main__":
