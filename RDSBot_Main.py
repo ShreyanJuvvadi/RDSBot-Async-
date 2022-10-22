@@ -2,16 +2,10 @@ import nest_asyncio
 nest_asyncio.apply()
 import config
 import asyncpraw
+import RedditFiles
 
 async def main():
-    reddit = asyncpraw.Reddit(
-        user_agent="LMGTFY",
-        client_id=config.client_id,
-        client_secret=config.client_secret,
-        username=config.username,
-        password=config.password,
-    )
-
+    reddit = await RedditFiles.bot_login()
     subreddit = await reddit.subreddit("wallstreetbets")
     print("Test")
     await subreddit.load()
@@ -19,7 +13,7 @@ async def main():
         print ("----------------------------------------")
         print(submission.title)
         await submission.load()
-        for comment in submission.comments:
+        async for comment in submission.comments:
             if hasattr(comment,"body"):
                 print("``````````")
                 print(comment.body)

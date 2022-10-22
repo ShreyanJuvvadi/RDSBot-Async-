@@ -1,7 +1,7 @@
 subreddit = "BotsPlayHere"
+LoopCount = 0
 
-
-
+#other subreddits [wallstreetbets, BotsPlayHere]
 
 
 
