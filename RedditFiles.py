@@ -6,14 +6,18 @@ async def main():
     subreddit = await reddit.subreddit(config.UserSubreddit)
     print("Test")
     await subreddit.load()
-    async for submission in subreddit.hot(limit = 1):
-        print ("----------------------------------------")
+    async for submission in subreddit.hot(limit = config.SubmissionLimit):
+        print ("-------------------------------------------------------------------------------------------------------")
         print(submission.title)
         await submission.load()
+        i = 0
         async for comment in submission.comments:
             if hasattr(comment,"body"):
                 print("``````````")
                 print(comment.body)
+            i = i + 1
+            if i > config.CommentLimit:
+                break
     await reddit.close();   #logs out
     return
 
